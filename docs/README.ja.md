@@ -39,6 +39,21 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 - `python3` + Pillow（ノート描画品質向上に推奨）
 - 画像ファイルを `CAPTURE_DIR` に保存できる任意のキャプチャ手段
 
+## プロジェクトファイルの入手方法（macOS）
+
+方法 A: Git を使う
+
+```bash
+git clone https://github.com/vitalibondar/gyazo-capture-bridge.git
+cd gyazo-capture-bridge
+```
+
+方法 B: Git を使わない
+
+1. GitHub のリポジトリページを開く。
+2. `Code` -> `Download ZIP` をクリック。
+3. ZIP を展開し、展開したフォルダを Terminal で開く。
+
 ## クイックセットアップ
 
 1. プロジェクトに移動:

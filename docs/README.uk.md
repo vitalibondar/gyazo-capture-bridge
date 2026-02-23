@@ -39,6 +39,21 @@
 - `python3` + Pillow бажано для кращої якості рендеру нотаток
 - будь-який інструмент захоплення, що зберігає картинки в `CAPTURE_DIR`
 
+## Як Отримати Файли Проєкту (macOS)
+
+Варіант A: через Git
+
+```bash
+git clone https://github.com/vitalibondar/gyazo-capture-bridge.git
+cd gyazo-capture-bridge
+```
+
+Варіант B: без Git
+
+1. Відкрий сторінку репозиторію на GitHub.
+2. Натисни `Code` -> `Download ZIP`.
+3. Розпакуй архів і відкрий теку в Terminal.
+
 ## Швидкий старт
 
 1. Зайди в папку проєкту:

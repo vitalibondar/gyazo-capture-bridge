@@ -35,6 +35,21 @@ It works with any capture workflow that saves image files to a folder: Shottr, m
 - `python3` + Pillow recommended for best notes rendering quality
 - any capture app/tool saving image files into `CAPTURE_DIR`
 
+## Get project files (macOS)
+
+Option A: with Git
+
+```bash
+git clone https://github.com/vitalibondar/gyazo-capture-bridge.git
+cd gyazo-capture-bridge
+```
+
+Option B: without Git
+
+1. Open the repository page on GitHub.
+2. Click `Code` -> `Download ZIP`.
+3. Unzip archive and open the extracted folder in Terminal.
+
 ## Quick setup
 
 1. Enter project directory:
