@@ -6,6 +6,12 @@
 Gyazo へ画像キャプチャをアップロードするための小さな macOS ブリッジです。
 画像をフォルダ保存できるキャプチャ手段なら何でも使えます。例: Shottr、macOS標準スクリーンショット、CleanShot X、Flameshot、独自スクリプト。
 
+## デモ（Gyazo）
+
+- 日本語の俳句: [https://gyazo.com/2a50c223fa97964302a66090fb645ee1](https://gyazo.com/2a50c223fa97964302a66090fb645ee1)
+- 英語の俳句: [https://gyazo.com/b23738a55339459d9942606bac7128d9](https://gyazo.com/b23738a55339459d9942606bac7128d9)
+- ウクライナ語の俳句: [https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1](https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1)
+
 ## 主な機能
 
 - 手動アップロード（`upload_gyazo.sh`）

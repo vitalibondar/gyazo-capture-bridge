@@ -6,6 +6,12 @@ Start here: [Why This Exists](./docs/WHY.md) | [Навіщо це](./docs/WHY.uk
 A small macOS bridge that uploads image captures to Gyazo.
 It works with any capture workflow that saves image files to a folder: Shottr, macOS Screenshot, CleanShot X, Flameshot, or your own script.
 
+## Live Demo (Gyazo)
+
+- Japanese haiku: [https://gyazo.com/2a50c223fa97964302a66090fb645ee1](https://gyazo.com/2a50c223fa97964302a66090fb645ee1)
+- English haiku: [https://gyazo.com/b23738a55339459d9942606bac7128d9](https://gyazo.com/b23738a55339459d9942606bac7128d9)
+- Ukrainian haiku: [https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1](https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1)
+
 ## What you get
 
 - Manual upload (`upload_gyazo.sh`)
