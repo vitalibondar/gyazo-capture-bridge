@@ -201,6 +201,6 @@ Wrong `App`/`Window` in description
 
 ## Full Manuals
 
-- `./README.md`
+- `../README.md`
 - `./NOTES_PRACTICAL_GUIDE.md`
 - `./DECISION_JOURNAL.md`

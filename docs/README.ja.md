@@ -1,6 +1,6 @@
 # Gyazo Capture Bridge (macOS)
 
-言語: [English](./README.md) | [Українська](./README.uk.md) | **日本語**
+言語: [English](../README.md) | [Українська](./README.uk.md) | **日本語**
 まず読む: [このプロジェクトの目的](./WHY.ja.md) | [Why This Exists](./WHY.md) | [Навіщо це](./WHY.uk.md)
 
 Gyazo へ画像キャプチャをアップロードするための小さな macOS ブリッジです。
@@ -174,4 +174,4 @@ source ./config.env
 
 ## ライセンス
 
-MIT。`[LICENSE](./LICENSE)` を参照。
+MIT。`[LICENSE](../LICENSE)` を参照。

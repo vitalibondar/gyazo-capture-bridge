@@ -201,6 +201,6 @@ description の `App` / `Window` がずれる
 
 ## 詳細マニュアル
 
-- `./README.md`
+- `../README.md`
 - `./NOTES_PRACTICAL_GUIDE.md`
 - `./DECISION_JOURNAL.md`

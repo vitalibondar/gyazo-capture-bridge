@@ -1,6 +1,6 @@
 # Gyazo Capture Bridge (macOS)
 
-Мова: [English](./README.md) | **Українська** | [日本語](./README.ja.md)
+Мова: [English](../README.md) | **Українська** | [日本語](./README.ja.md)
 Почни звідси: [Навіщо це](./WHY.uk.md) | [Why This Exists](./WHY.md) | [このプロジェクトの目的](./WHY.ja.md)
 
 Це невеликий міст для macOS, який завантажує файли захоплення екрана в Gyazo.
@@ -174,4 +174,4 @@ source ./config.env
 
 ## Ліцензія
 
-MIT. Дивись [LICENSE](./LICENSE).
+MIT. Дивись [LICENSE](../LICENSE).

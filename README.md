@@ -1,7 +1,7 @@
 # Gyazo Capture Bridge (macOS)
 
-Language: **English** | [Українська](./README.uk.md) | [日本語](./README.ja.md)
-Start here: [Why This Exists](./WHY.md) | [Навіщо це](./WHY.uk.md) | [このプロジェクトの目的](./WHY.ja.md)
+Language: **English** | [Українська](./docs/README.uk.md) | [日本語](./docs/README.ja.md)
+Start here: [Why This Exists](./docs/WHY.md) | [Навіщо це](./docs/WHY.uk.md) | [このプロジェクトの目的](./docs/WHY.ja.md)
 
 A small macOS bridge that uploads image captures to Gyazo.
 It works with any capture workflow that saves image files to a folder: Shottr, macOS Screenshot, CleanShot X, Flameshot, or your own script.
@@ -25,11 +25,7 @@ It works with any capture workflow that saves image files to a folder: Shottr, m
 - `notes_capture_from_clipboard.sh` - capture text into notes inbox
 - `notes_process_inbox.sh` - process notes inbox
 - `notes_pipeline.js` - render cards, upload, archive, index
-- `WHY.md` - short project philosophy and rationale
-- `FORGOT_EVERYTHING_QUICKSTART.md` - short recovery checklist
-- `NOTES_PRACTICAL_GUIDE.md` - notes-focused practical guide
-- `DECISION_JOURNAL.md` - decisions and rationale log
-- `TRADEMARKS.md` - legal/trademark notice
+- `docs/` - all project documentation (multilingual guides, rationale, legal notes, decision log)
 
 ## Requirements
 
@@ -170,7 +166,7 @@ You can trigger note capture from any automation tool or run scripts directly in
 ## Legal
 
 This project is independent and not affiliated with Gyazo / Helpfeel Inc.
-See [TRADEMARKS.md](./TRADEMARKS.md).
+See [TRADEMARKS.md](./docs/TRADEMARKS.md).
 
 ## License
 

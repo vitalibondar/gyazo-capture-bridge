@@ -201,6 +201,6 @@ launchctl print "gui/$(id -u)/com.vb.gyazo-capture-bridge" >/dev/null && echo "l
 
 ## Повна Документація
 
-- `./README.md`
+- `../README.md`
 - `./NOTES_PRACTICAL_GUIDE.md` (простий посібник по нотатках)
 - `./DECISION_JOURNAL.md` (чому рішення саме такі, ідеї на потім)
