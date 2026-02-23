@@ -6,6 +6,10 @@
 Це невеликий міст для macOS, який завантажує файли захоплення екрана в Gyazo.
 Працює з будь-яким інструментом, який зберігає зображення в папку: Shottr, системна утиліта Screenshot у macOS, CleanShot X, Flameshot або твій скрипт.
 
+## Ілюстрація
+
+[![Ілюстрація Gyazo Capture Bridge](https://i.gyazo.com/575795dd4a6dc00ddfe76fded9ee3650.png)](https://gyazo.com/575795dd4a6dc00ddfe76fded9ee3650)
+
 ## Жива демонстрація (Gyazo)
 
 - Хайку японською: [https://gyazo.com/2a50c223fa97964302a66090fb645ee1](https://gyazo.com/2a50c223fa97964302a66090fb645ee1)
