@@ -8,7 +8,7 @@ It works with any capture workflow that saves image files to a folder: Shottr, m
 
 ## Illustration
 
-[![Gyazo Capture Bridge illustration](https://i.gyazo.com/8815d471c12ad68a29ee2404d21ad6ee.png)](https://gyazo.com/8815d471c12ad68a29ee2404d21ad6ee)
+[![Gyazo Capture Bridge illustration](https://i.gyazo.com/8815d471c12ad68a29ee2404d21ad6ee.png?v=2)](https://gyazo.com/8815d471c12ad68a29ee2404d21ad6ee)
 
 ## Live Demo (Gyazo)
 
