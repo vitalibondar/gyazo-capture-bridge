@@ -1,7 +1,7 @@
 # Gyazo Capture Bridge (macOS)
 
 言語: [English](./README.md) | [Українська](./README.uk.md) | **日本語**
-まず読む: [このプロジェクトの目的](./WHY.ja.md) | [English](./WHY.md) | [Українська](./WHY.uk.md)
+まず読む: [このプロジェクトの目的](./WHY.ja.md) | [Why This Exists](./WHY.md) | [Навіщо це](./WHY.uk.md)
 
 Gyazo へ画像キャプチャをアップロードするための小さな macOS ブリッジです。
 画像をフォルダ保存できるキャプチャ手段なら何でも使えます。例: Shottr、macOS標準スクリーンショット、CleanShot X、Flameshot、独自スクリプト。

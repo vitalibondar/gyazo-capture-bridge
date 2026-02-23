@@ -1,7 +1,7 @@
 # Gyazo Capture Bridge (macOS)
 
 Мова: [English](./README.md) | **Українська** | [日本語](./README.ja.md)
-Почни звідси: [Навіщо це](./WHY.uk.md) | [English](./WHY.md) | [日本語](./WHY.ja.md)
+Почни звідси: [Навіщо це](./WHY.uk.md) | [Why This Exists](./WHY.md) | [このプロジェクトの目的](./WHY.ja.md)
 
 Невеликий міст для macOS, який вивантажує файли-захоплення екрана в Gyazo.
 Працює з будь-яким інструментом, що зберігає картинки в теку: Shottr, системна Screenshot у macOS, CleanShot X, Flameshot або твій скрипт.

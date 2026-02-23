@@ -1,7 +1,7 @@
 # Gyazo Capture Bridge (macOS)
 
 Language: **English** | [Українська](./README.uk.md) | [日本語](./README.ja.md)
-Start here: [Why This Exists](./WHY.md) | [Українська](./WHY.uk.md) | [日本語](./WHY.ja.md)
+Start here: [Why This Exists](./WHY.md) | [Навіщо це](./WHY.uk.md) | [このプロジェクトの目的](./WHY.ja.md)
 
 A small macOS bridge that uploads image captures to Gyazo.
 It works with any capture workflow that saves image files to a folder: Shottr, macOS Screenshot, CleanShot X, Flameshot, or your own script.
