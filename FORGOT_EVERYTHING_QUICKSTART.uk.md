@@ -1,8 +1,8 @@
-# Forgot Everything Quickstart
+# Швидкий Старт Після Паузи
 
 Мова: [English](./FORGOT_EVERYTHING_QUICKSTART.md) | **Українська** | [日本語](./FORGOT_EVERYTHING_QUICKSTART.ja.md)
 
-Коротка шпаргалка, якщо ти повністю забув, що це за папка.
+Коротка шпаргалка, якщо ти давно не відкривав цей проєкт.
 
 ## 30 Секунд
 
@@ -17,7 +17,7 @@
 1. Перейди в папку:
 
 ```bash
-cd ./gyazo-capture-bridge
+cd /path/to/gyazo-capture-bridge
 ```
 
 2. Відкрий конфіг:
@@ -27,13 +27,13 @@ open -e ./config.env
 ```
 
 3. Перевір ключ:
-- `GYAZO_ACCESS_TOKEN` не має бути placeholder.
+- `GYAZO_ACCESS_TOKEN` не має бути плейсхолдером.
 - Формат у `./config.env`: `GYAZO_ACCESS_TOKEN="тут_токен"` (рекомендовано в подвійних лапках).
 
 4. Перевір теку захоплень:
 - `CAPTURE_DIR` має вказувати на папку зі скрінами (актуальне значення дивись у `./config.env`).
 
-5. Health-check:
+5. Швидка перевірка:
 
 ```bash
 ./upload_gyazo.sh
@@ -52,13 +52,13 @@ echo "$LOG_FILE"
 ls -la "$LOG_FILE"
 ```
 
-## Як Отримати Gyazo Token (швидко)
+## Як Швидко Отримати Токен Доступу Gyazo (access token)
 
-1. Login: [https://gyazo.com/login](https://gyazo.com/login)
-2. API page: [https://gyazo.com/api](https://gyazo.com/api)
-3. Dashboard apps: [https://gyazo.com/oauth/applications](https://gyazo.com/oauth/applications)
-4. Create app: [https://gyazo.com/oauth/applications/new](https://gyazo.com/oauth/applications/new)
-5. Згенеруй Access Token і встав у `./config.env`
+1. Вхід: [https://gyazo.com/login](https://gyazo.com/login)
+2. API-сторінка: [https://gyazo.com/api](https://gyazo.com/api)
+3. Панель застосунків: [https://gyazo.com/oauth/applications](https://gyazo.com/oauth/applications)
+4. Створення застосунку: [https://gyazo.com/oauth/applications/new](https://gyazo.com/oauth/applications/new)
+5. Згенеруй Access Token і встав його в `./config.env`
 
 Мінімальна перевірка токена:
 
@@ -87,9 +87,9 @@ source ./config.env
 ./uninstall_launch_agent.sh
 ```
 
-## Notes За 1 Хвилину
+## Нотатки За 1 Хвилину
 
-Захопити виділений текст із буфера в inbox:
+Захопити виділений текст із буфера у вхідну теку:
 
 ```bash
 ./notes_capture_from_clipboard.sh
@@ -101,7 +101,7 @@ source ./config.env
 ./notes_capture_from_clipboard.sh "Тестова нотатка"
 ```
 
-Обробити inbox (рендер у картинку + upload у Gyazo):
+Обробити вхідну теку (рендер у картинку + завантаження в Gyazo):
 
 ```bash
 ./notes_process_inbox.sh
@@ -116,7 +116,7 @@ echo "$NOTES_RENDERED_DIR"
 echo "$NOTES_INDEX_FILE"
 ```
 
-Мінімальні notes-дефолти:
+Мінімальні дефолтні налаштування для нотаток:
 - `NOTES_GYAZO_ACCESS_POLICY="only_me"`
 - `NOTES_GYAZO_DESC_TAG="#notes"`
 - `NOTES_DESC_STYLE="compact"`
@@ -142,8 +142,8 @@ echo "$NOTES_INDEX_FILE"
 - `GYAZO_TITLE_BROWSER_MODE="url"`: для браузера в полі Source буде URL (або `"tab"` для назви вкладки).
 - `GYAZO_SEND_DESC_METADATA="true"`: читабельний `desc` з App/Window/URL.
 - `GYAZO_SEND_CREATED_AT="true"`: час файлу в `created_at`.
-- `GYAZO_ACCESS_POLICY="only_me"` (дефолт, приватно) або `"anyone"` (публічне посилання).
-- примітка: `only_me` може залежати від тарифу акаунту (див. docs про visibility).
+- `GYAZO_ACCESS_POLICY="only_me"` (за замовчуванням, приватно) або `"anyone"` (публічне посилання).
+- примітка: `only_me` може залежати від тарифу акаунту (див. документацію про visibility).
 - `GYAZO_CONTEXT_NOTE=""`: додатковий контекст (проєкт/тема) для `desc`.
 - `GYAZO_DESC_TAG="#capture"`: тег у кінці `desc` (одне слово, для розділення використовуй `_`).
 - `GYAZO_DESC_TAG_APP="true"`: `App` як тег (`#Safari` у compact-режимі).
@@ -181,7 +181,7 @@ echo "$NOTES_INDEX_FILE"
 - для мережі: зменш `CURL_MAX_TIME_SEC` у `config.env`.
 - для збору контексту notes: зменш `NOTES_OSASCRIPT_TIMEOUT_SEC` у `config.env`.
 
-Лінк не шариться:
+Посилання не відкривається для інших:
 - для публічного посилання постав `GYAZO_ACCESS_POLICY="anyone"`.
 
 Система просить доступи (`Accessibility` / `Automation` / `Files and Folders`):
@@ -199,8 +199,8 @@ launchctl print "gui/$(id -u)/com.vb.gyazo-capture-bridge" >/dev/null && echo "l
 У `desc` неправильний `App`/`Window`:
 - перевір доступи `Accessibility` / `Automation`.
 
-## Повний Manual
+## Повна Документація
 
 - `./README.md`
-- `./NOTES_PRACTICAL_GUIDE.md` (простий notes-гайд)
+- `./NOTES_PRACTICAL_GUIDE.md` (простий посібник по нотатках)
 - `./DECISION_JOURNAL.md` (чому рішення саме такі, ідеї на потім)

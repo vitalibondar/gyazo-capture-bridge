@@ -7,7 +7,7 @@ Copy commands as-is.
 Before starting, enter project folder:
 
 ```bash
-cd ./gyazo-capture-bridge
+cd /path/to/gyazo-capture-bridge
 ```
 
 ## 1) One-command run (most common)

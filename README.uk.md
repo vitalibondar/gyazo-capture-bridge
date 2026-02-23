@@ -3,31 +3,31 @@
 Мова: [English](./README.md) | **Українська** | [日本語](./README.ja.md)
 Почни звідси: [Навіщо це](./WHY.uk.md) | [Why This Exists](./WHY.md) | [このプロジェクトの目的](./WHY.ja.md)
 
-Невеликий міст для macOS, який вивантажує файли-захоплення екрана в Gyazo.
-Працює з будь-яким інструментом, що зберігає картинки в теку: Shottr, системна Screenshot у macOS, CleanShot X, Flameshot або твій скрипт.
+Це невеликий міст для macOS, який завантажує файли захоплення екрана в Gyazo.
+Працює з будь-яким інструментом, який зберігає зображення в папку: Shottr, системна утиліта Screenshot у macOS, CleanShot X, Flameshot або твій скрипт.
 
 ## Що вміє
 
-- Ручний аплоад (`upload_gyazo.sh`)
-- Автоаплоад через `launchd` (`auto_dispatch.sh` + `install_launch_agent.sh`)
-- Керовані метадані Gyazo (app, source/title, description, tags, access policy)
+- Ручне завантаження (`upload_gyazo.sh`)
+- Автоматичне завантаження через `launchd` (`auto_dispatch.sh` + `install_launch_agent.sh`)
+- Керовані метадані Gyazo (`app`, `source/title`, `description`, `tags`, `access policy`)
 - Пайплайн нотаток (`notes_capture_from_clipboard.sh` + `notes_pipeline.js`): текст -> картинка -> Gyazo
 - Пресети нотаток (`mobile`, `desktop`, `custom`) і багатосторінковість
 
 ## Файли проєкту
 
-- `config.env` - локальні runtime-налаштування (не комітити)
+- `config.env` - локальні налаштування запуску (не додавати в git)
 - `config.env.example` - шаблон
 - `upload_gyazo.sh` - вивантаження картинки в Gyazo
-- `auto_dispatch.sh` - диспетчер автоаплоаду
+- `auto_dispatch.sh` - диспетчер автоматичного завантаження
 - `install_launch_agent.sh` / `uninstall_launch_agent.sh` - увімкнення/вимкнення авто-режиму
 - `com.vb.gyazo-capture-bridge.plist.template` - шаблон LaunchAgent
-- `notes_capture_from_clipboard.sh` - захоплення тексту в notes inbox
-- `notes_process_inbox.sh` - обробка notes inbox
-- `notes_pipeline.js` - рендер карток, аплоад, архів, індекс
+- `notes_capture_from_clipboard.sh` - захоплення тексту у вхідну теку нотаток
+- `notes_process_inbox.sh` - обробка вхідної теки нотаток
+- `notes_pipeline.js` - рендер карток, завантаження, архів, індекс
 - `WHY.uk.md` - коротко про мотивацію і філософію проєкту
-- `FORGOT_EVERYTHING_QUICKSTART.md` - коротка recovery-шпаргалка
-- `NOTES_PRACTICAL_GUIDE.md` - практичний notes-гайд
+- `FORGOT_EVERYTHING_QUICKSTART.md` - коротка шпаргалка для відновлення
+- `NOTES_PRACTICAL_GUIDE.md` - практичний посібник по нотатках
 - `DECISION_JOURNAL.md` - журнал рішень і аргументів
 - `TRADEMARKS.uk.md` - юридична примітка про торгові марки
 
@@ -61,11 +61,11 @@ open -e ./config.env
 
 4. Заповни `GYAZO_ACCESS_TOKEN` і `CAPTURE_DIR`.
 
-## Як отримати Gyazo access token
+## Як отримати токен доступу Gyazo (access token)
 
-1. Логін: [Gyazo Login](https://gyazo.com/login)
+1. Вхід: [Gyazo Login](https://gyazo.com/login)
 2. API-сторінка: [Gyazo API](https://gyazo.com/api)
-3. Dashboard застосунків: [Gyazo OAuth Apps](https://gyazo.com/oauth/applications)
+3. Панель застосунків: [Gyazo OAuth Apps](https://gyazo.com/oauth/applications)
 4. Створення застосунку: [New OAuth App](https://gyazo.com/oauth/applications/new)
 5. Згенеруй access token і встав у `config.env`
 
@@ -84,7 +84,7 @@ TOKEN="YOUR_REAL_TOKEN"
 curl -sS https://api.gyazo.com/api/users/me -H "Authorization: Bearer $TOKEN"
 ```
 
-## Ручний аплоад
+## Ручне завантаження
 
 Завантажити останній файл із `CAPTURE_DIR`:
 
@@ -113,7 +113,7 @@ source ./config.env
 ./uninstall_launch_agent.sh
 ```
 
-## Notes pipeline
+## Пайплайн нотаток
 
 Захопити текст із буфера (і за потреби одразу обробити, якщо `NOTES_PROCESS_AFTER_CAPTURE=true`):
 
@@ -127,7 +127,7 @@ source ./config.env
 ./notes_capture_from_clipboard.sh "Моя нотатка $(date)"
 ```
 
-Обробити inbox вручну:
+Обробити вхідну теку вручну:
 
 ```bash
 ./notes_process_inbox.sh
@@ -145,7 +145,7 @@ source ./config.env
 
 Можуть знадобитися:
 
-- Accessibility (визначення активної апки/вікна)
+- Accessibility (визначення активного застосунку/вікна)
 - Automation (читання URL/назви вкладки браузера)
 - Files and Folders (доступ до Pictures/Documents)
 
@@ -153,7 +153,7 @@ source ./config.env
 
 Можеш запускати захоплення нотаток з будь-якого інструмента автоматизації або просто з терміналу.
 
-## Troubleshooting
+## Усунення проблем
 
 `You are not authorized.`
 - неправильний токен (часто вставляють `client_secret` замість access token)
@@ -162,14 +162,14 @@ source ./config.env
 - невірний `CAPTURE_DIR` або в теці немає файлів
 
 `No text input found (args/stdin/clipboard).`
-- скрипт notes не отримав тексту з args/stdin/clipboard
+- скрипт нотаток не отримав текст з `args/stdin/clipboard`
 
 `No notes in inbox.`
-- у `NOTES_INBOX_DIR` немає `.md` / `.txt`
+- у `NOTES_INBOX_DIR` немає `.md` або `.txt`
 
-## Юридично
+## Правові зауваги
 
-Цей проєкт незалежний і не афілійований з Gyazo / Helpfeel Inc.
+Цей проєкт незалежний і не повʼязаний із Gyazo / Helpfeel Inc.
 Деталі: [TRADEMARKS.uk.md](./TRADEMARKS.uk.md).
 
 ## Ліцензія

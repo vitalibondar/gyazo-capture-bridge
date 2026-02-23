@@ -22,12 +22,12 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 - `auto_dispatch.sh` - 自動アップロード用ディスパッチャ
 - `install_launch_agent.sh` / `uninstall_launch_agent.sh` - 自動モード導入・解除
 - `com.vb.gyazo-capture-bridge.plist.template` - LaunchAgent テンプレート
-- `notes_capture_from_clipboard.sh` - テキストを notes inbox へ保存
-- `notes_process_inbox.sh` - notes inbox を処理
+- `notes_capture_from_clipboard.sh` - テキストをノート受信フォルダに保存
+- `notes_process_inbox.sh` - ノート受信フォルダを処理
 - `notes_pipeline.js` - カード描画・アップロード・アーカイブ・インデックス
 - `WHY.ja.md` - 目的と思想の短い説明
 - `FORGOT_EVERYTHING_QUICKSTART.md` - 復帰用クイックチェック
-- `NOTES_PRACTICAL_GUIDE.md` - notes 実用ガイド
+- `NOTES_PRACTICAL_GUIDE.md` - ノート実用ガイド
 - `DECISION_JOURNAL.md` - 実装判断ログ
 - `TRADEMARKS.ja.md` - 法務/商標メモ
 
@@ -67,7 +67,7 @@ open -e ./config.env
 2. API ページ: [Gyazo API](https://gyazo.com/api)
 3. アプリ管理: [Gyazo OAuth Apps](https://gyazo.com/oauth/applications)
 4. 新規作成: [New OAuth App](https://gyazo.com/oauth/applications/new)
-5. Access Token を発行し `config.env` に貼り付け
+5. アクセストークンを発行し `config.env` に貼り付け
 
 `config.env` 形式:
 
@@ -127,7 +127,7 @@ source ./config.env
 ./notes_capture_from_clipboard.sh "My note $(date)"
 ```
 
-inbox 手動処理:
+受信フォルダを手動処理:
 
 ```bash
 ./notes_process_inbox.sh

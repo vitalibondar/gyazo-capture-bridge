@@ -1,8 +1,8 @@
-# Decision Journal
+# 判断ログ
 
 言語: [English](./DECISION_JOURNAL.md) | [Українська](./DECISION_JOURNAL.uk.md) | **日本語**
 
-これは changelog ではありません。
+これは単なる変更履歴ではありません。
 セッションをまたいでも文脈を失わないように、判断・理由・未実装アイデアを残すための記録です。
 
 ## 読み方
@@ -84,18 +84,18 @@
 [R] Web UI にはあるが、upload API ドキュメントに該当パラメータがない。
 [I] API 側で対応が出たら `config.env` に項目追加。
 
-### 2026-02-08 — Notes は inbox-first フロー
+### 2026-02-08 — ノートは inbox-first フロー
 [D] フローを `inbox -> render -> upload -> archive -> index` に統一。
 [R] テキスト取得とアップロードを分離でき、メインのキャプチャフローを汚さない。
 [R] `.md/.txt` を inbox に置くだけで手動ノートも処理できる。
 [R] `.meta.json` + front matter で `app/window/url/title/time` を DB なしで保持。
 
-### 2026-02-08 — Notes も upload スクリプト経由で統一
+### 2026-02-08 — ノートも upload スクリプト経由で統一
 [D] `notes_pipeline.js` は Gyazo へ直接送らず、`upload_gyazo.sh` を `UPLOAD_*` 上書き付きで呼ぶ。
 [R] API・タグ・アクセス方針・ログの実装を1か所に集約できる。
 [X] 別スクリプトで curl 実装を重複させる案は却下。
 
-### 2026-02-08 — Notes レンダリングは過剰実装を避ける
+### 2026-02-08 — ノートのレンダリングは過剰実装を避ける
 [D] ImageMagick `caption:@file` + 軽量 markdown-to-text を採用。
 [R] 依存を増やさず起動が速い。
 [X] HTML/CSS や headless browser レンダラーは現時点で過剰。
@@ -138,7 +138,7 @@
 [R] 端末起動ノートで `#ghostty` などの不要タグ混入を防ぐ。
 [R] 実アプリ文脈（app/window/url）は引数なしクリップボード実行時のみ取得。
 
-### 2026-02-08 — Notes でも URL クリップボード動作を統一
+### 2026-02-08 — ノートでも URL クリップボード動作を統一
 [D] `NOTES_COPY_URL_TO_CLIPBOARD=true` を既定有効化。
 [R] スクリーンショットと同じ体験（アップロード直後に共有URLが使える）。
 [D] `source_app=manual` の場合は app 行・app metadata を description から除外。
@@ -148,7 +148,7 @@
 [D] `NOTES_RENDER_WIDTH=430`、`NOTES_RENDER_WINDOW_DOTS=false` を既定化。
 [R] スマホ縦閲覧で読みやすく、window controls は必要時のみ有効にできる。
 
-### 2026-02-08 — Notes 専用の実用ガイドを分離
+### 2026-02-08 — ノート専用の実用ガイドを分離
 [D] `NOTES_PRACTICAL_GUIDE.md` を追加（コピペ中心、最小説明）。
 [R] 大きな README を読まずに日次運用へ復帰できる。
 [R] Gyazo `App` フィールドで `manual` と clipboard モード差分を明示。

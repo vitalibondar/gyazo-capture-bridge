@@ -1,4 +1,4 @@
-# Forgot Everything Quickstart
+# すぐ復帰するためのクイックスタート
 
 言語: [English](./FORGOT_EVERYTHING_QUICKSTART.md) | [Українська](./FORGOT_EVERYTHING_QUICKSTART.uk.md) | **日本語**
 
@@ -17,7 +17,7 @@
 1. プロジェクトフォルダへ移動:
 
 ```bash
-cd ./gyazo-capture-bridge
+cd /path/to/gyazo-capture-bridge
 ```
 
 2. 設定を開く:
@@ -54,10 +54,10 @@ ls -la "$LOG_FILE"
 
 ## Gyazo トークン取得（最短）
 
-1. Login: [https://gyazo.com/login](https://gyazo.com/login)
+1. ログイン: [https://gyazo.com/login](https://gyazo.com/login)
 2. API: [https://gyazo.com/api](https://gyazo.com/api)
-3. Apps: [https://gyazo.com/oauth/applications](https://gyazo.com/oauth/applications)
-4. New app: [https://gyazo.com/oauth/applications/new](https://gyazo.com/oauth/applications/new)
+3. アプリ管理: [https://gyazo.com/oauth/applications](https://gyazo.com/oauth/applications)
+4. 新規アプリ作成: [https://gyazo.com/oauth/applications/new](https://gyazo.com/oauth/applications/new)
 5. Access Token を発行し `./config.env` に貼る
 
 最小トークン確認:
@@ -87,9 +87,9 @@ source ./config.env
 ./uninstall_launch_agent.sh
 ```
 
-## Notes を1分で
+## ノートを1分で
 
-クリップボードのテキストを inbox へ:
+クリップボードのテキストを受信フォルダへ:
 
 ```bash
 ./notes_capture_from_clipboard.sh
@@ -101,7 +101,7 @@ source ./config.env
 ./notes_capture_from_clipboard.sh "テストノート"
 ```
 
-inbox 処理（画像化 + Gyazoアップロード）:
+受信フォルダ処理（画像化 + Gyazoアップロード）:
 
 ```bash
 ./notes_process_inbox.sh
@@ -132,7 +132,7 @@ echo "$NOTES_INDEX_FILE"
 - `NOTES_PAGE_MAX_CHARS="900"`（長文を自動分割）
 - `NOTES_PAGE_LABEL="true"`（`1/3` のページ表示）
 - `NOTES_PAGE_UNIFORM_SIZE="true"`（全ページ同サイズ）
-- `NOTES_UPLOAD_LAST_PAGE_FIRST="true"`（Gyazo フィード向け順序）
+- `NOTES_UPLOAD_LAST_PAGE_FIRST="true"`（Gyazo フィード向けの並び順）
 - `NOTES_GYAZO_SEND_CREATED_AT="false"`（フィード順序を安定化）
 
 ## Gyazo メタデータ設定（`./config.env`）

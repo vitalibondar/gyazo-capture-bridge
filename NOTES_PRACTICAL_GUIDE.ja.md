@@ -1,4 +1,4 @@
-# Notes Practical Guide
+# ノート実用ガイド
 
 言語: [English](./NOTES_PRACTICAL_GUIDE.md) | [Українська](./NOTES_PRACTICAL_GUIDE.uk.md) | **日本語**
 
@@ -7,7 +7,7 @@
 開始前にプロジェクトへ移動:
 
 ```bash
-cd ./gyazo-capture-bridge
+cd /path/to/gyazo-capture-bridge
 ```
 
 ## 1) まずは1コマンド（最頻パターン）
@@ -27,20 +27,20 @@ cd ./gyazo-capture-bridge
 ./notes_capture_from_clipboard.sh
 ```
 
-このモードはクリップボード文字列を使い、アクティブアプリの文脈取得も試みます。
+このモードはクリップボードの文字列を使い、アクティブアプリの文脈取得も試みます。
 
 ## 3) Gyazo の App フィールドが空になる理由
 
 `manual` モードでは正常です:
 - 引数あり実行（`./notes_capture_from_clipboard.sh "..."`）時、`source_app=manual` になる;
 - このケースでは `manual` / `ghostty` のようなノイズを避けるため `app` を Gyazo に送らない;
-- そのため Gyazo 側に `Input name of App` が表示される。
+- そのため Gyazo 側には `Input name of App` が表示される。
 
 実アプリ名を入れたい場合:
 - テキストをクリップボードに置く;
 - 対象アプリを前面にして、引数なしで `./notes_capture_from_clipboard.sh` を実行。
 
-notes の description レイアウト:
+ノートの description レイアウト:
 - Gyazo コメントの1行目は内容（タイトル/本文）を優先;
 - アプリタグは最終タグ行に追加（例: `#notes #Safari`）。
 

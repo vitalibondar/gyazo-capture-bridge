@@ -17,7 +17,7 @@ A short cheat sheet for the “I forgot what this folder does” moment.
 1. Go to the project folder:
 
 ```bash
-cd ./gyazo-capture-bridge
+cd /path/to/gyazo-capture-bridge
 ```
 
 2. Open config:
