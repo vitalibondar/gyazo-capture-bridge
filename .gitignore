@@ -1,2 +1,13 @@
 .DS_Store
 .codex/
+# Secrets
+config.env
+
+# macOS
+# Runtime/logs
+*.log
+notes-data/
+# Local temp artifacts
+.tmp-*/
+# User launchd artifacts
+*.plist.generated
