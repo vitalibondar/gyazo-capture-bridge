@@ -186,6 +186,13 @@ Each significant step is added as one block:
 
 ## Unrealized but useful ideas
 
+### [I] Universal text-capture hotkey (no Keyboard Maestro dependency)
+[I] Add a native macOS capture path based on Quick Action + AppleScript wrapper:
+- trigger `Cmd+C`;
+- read selected text from clipboard;
+- call `notes_capture_from_clipboard.sh`.
+[R] Makes note capture available without paid automation tools and keeps one shared script path.
+
 ### [I] Firefox URL via extension
 [R] AppleScript URL extraction is less stable in Firefox than Safari/Chromium browsers.
 [I] A minimal browser extension can provide more stable local URL handoff.

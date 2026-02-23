@@ -6,8 +6,6 @@
 Це невеликий міст для macOS, який завантажує файли захоплення екрана в Gyazo.
 Працює з будь-яким інструментом, який зберігає зображення в папку: Shottr, системна утиліта Screenshot у macOS, CleanShot X, Flameshot або твій скрипт.
 
-## Ілюстрація
-
 [![Ілюстрація Gyazo Capture Bridge](https://i.gyazo.com/575795dd4a6dc00ddfe76fded9ee3650.png)](https://gyazo.com/575795dd4a6dc00ddfe76fded9ee3650)
 Це реальна картка нотатки, згенерована пайплайном нотаток. Деталі: [Що вміє](#features-overview).
 
@@ -37,6 +35,7 @@
 - `notes_capture_from_clipboard.sh` - захоплення тексту у вхідну теку нотаток
 - `notes_process_inbox.sh` - обробка вхідної теки нотаток
 - `notes_pipeline.js` - рендер карток, завантаження, архів, індекс
+- `integrations/keyboard-maestro/` - опційний експорт макроса Keyboard Maestro + коротка інструкція
 - `WHY.uk.md` - коротко про мотивацію і філософію проєкту
 - `FORGOT_EVERYTHING_QUICKSTART.md` - коротка шпаргалка для відновлення
 - `NOTES_PRACTICAL_GUIDE.md` - практичний посібник по нотатках
@@ -179,6 +178,12 @@ source ./config.env
 ## Автоматизація (опційно)
 
 Можеш запускати захоплення нотаток з будь-якого інструмента автоматизації або просто з терміналу.
+Готовий макрос Keyboard Maestro: `integrations/keyboard-maestro/Gyazo-Capture-Bridge__Capture-Selection-to-Gyazo-Note.kmmacros`
+
+Після імпорту:
+1. Вкажи `GCB_PROJECT_DIR` як шлях до локальної папки проєкту.
+2. Признач свій хоткей.
+3. У дії `Execute Shell Script` лиши режим `With input from Nothing`.
 
 ## Усунення проблем
 

@@ -186,6 +186,13 @@
 
 ## 未実装だが有用なアイデア
 
+### [I] Keyboard Maestro 依存なしの汎用テキスト取得ホットキー
+[I] Quick Action + AppleScript ラッパーによる macOS ネイティブ導線を追加:
+- `Cmd+C` を送る;
+- 選択文字列をクリップボードから読む;
+- `notes_capture_from_clipboard.sh` を呼ぶ。
+[R] 有料自動化ツールに依存せず、同じスクリプト経路でノート作成を提供できる。
+
 ### [I] Firefox の URL を拡張機能で取得
 [R] AppleScript 経由の URL 取得は Safari/Chromium より Firefox で不安定。
 [I] 最小限の拡張機能でローカル受け渡しすれば安定性向上が見込める。

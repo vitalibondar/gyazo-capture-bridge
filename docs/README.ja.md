@@ -6,8 +6,6 @@
 Gyazo へ画像キャプチャをアップロードするための小さな macOS ブリッジです。
 画像をフォルダ保存できるキャプチャ手段なら何でも使えます。例: Shottr、macOS標準スクリーンショット、CleanShot X、Flameshot、独自スクリプト。
 
-## イラスト
-
 [![Gyazo Capture Bridge のイラスト](https://i.gyazo.com/7dc739684829c218ea7e887990ddaed5.png)](https://gyazo.com/7dc739684829c218ea7e887990ddaed5)
 これはノート機能で実際に生成したカードです。詳細は下の [主な機能](#features-overview) を参照してください。
 
@@ -37,6 +35,7 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 - `notes_capture_from_clipboard.sh` - テキストをノート受信フォルダに保存
 - `notes_process_inbox.sh` - ノート受信フォルダを処理
 - `notes_pipeline.js` - カード描画・アップロード・アーカイブ・インデックス
+- `integrations/keyboard-maestro/` - 任意の Keyboard Maestro マクロ書き出し + 設定メモ
 - `WHY.ja.md` - 目的と思想の短い説明
 - `FORGOT_EVERYTHING_QUICKSTART.md` - 復帰用クイックチェック
 - `NOTES_PRACTICAL_GUIDE.md` - ノート実用ガイド
@@ -179,6 +178,12 @@ source ./config.env
 ## 自動化ツール（任意）
 
 ノート取り込みは任意の自動化ツール、またはターミナル実行で使えます。
+Keyboard Maestro 用マクロ: `integrations/keyboard-maestro/Gyazo-Capture-Bridge__Capture-Selection-to-Gyazo-Note.kmmacros`
+
+インポート後:
+1. `GCB_PROJECT_DIR` をローカルのプロジェクトパスに設定。
+2. 自分のホットキーを設定。
+3. `Execute Shell Script` の入力モードは `Nothing` のまま使用。
 
 ## トラブルシューティング
 
