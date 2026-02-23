@@ -21,7 +21,7 @@
 - `upload_gyazo.sh` - вивантаження картинки в Gyazo
 - `auto_dispatch.sh` - диспетчер автоматичного завантаження
 - `install_launch_agent.sh` / `uninstall_launch_agent.sh` - увімкнення/вимкнення авто-режиму
-- `com.vb.gyazo-capture-bridge.plist.template` - шаблон LaunchAgent
+- `com.gyazo-capture-bridge.plist.template` - шаблон LaunchAgent
 - `notes_capture_from_clipboard.sh` - захоплення тексту у вхідну теку нотаток
 - `notes_process_inbox.sh` - обробка вхідної теки нотаток
 - `notes_pipeline.js` - рендер карток, завантаження, архів, індекс

@@ -193,7 +193,7 @@ Auto mode does not trigger
 - check:
 
 ```bash
-launchctl print "gui/$(id -u)/com.vb.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
+launchctl print "gui/$(id -u)/com.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
 ```
 
 Wrong `App`/`Window` in description

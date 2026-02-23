@@ -2,8 +2,11 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TEMPLATE_FILE="$SCRIPT_DIR/com.vb.gyazo-capture-bridge.plist.template"
-TARGET_PLIST="$HOME/Library/LaunchAgents/com.vb.gyazo-capture-bridge.plist"
+AGENT_LABEL="com.gyazo-capture-bridge"
+LEGACY_AGENT_LABEL="com.vb.gyazo-capture-bridge"
+TEMPLATE_FILE="$SCRIPT_DIR/com.gyazo-capture-bridge.plist.template"
+TARGET_PLIST="$HOME/Library/LaunchAgents/$AGENT_LABEL.plist"
+LEGACY_TARGET_PLIST="$HOME/Library/LaunchAgents/$LEGACY_AGENT_LABEL.plist"
 
 if [[ ! -f "$TEMPLATE_FILE" ]]; then
   echo "Template not found: $TEMPLATE_FILE"
@@ -28,9 +31,12 @@ sed \
   "$TEMPLATE_FILE" > "$TARGET_PLIST"
 
 launch_domain="gui/$(id -u)"
+launchctl bootout "$launch_domain/$LEGACY_AGENT_LABEL" >/dev/null 2>&1 || true
+launchctl bootout "$launch_domain" "$LEGACY_TARGET_PLIST" >/dev/null 2>&1 || true
+rm -f "$LEGACY_TARGET_PLIST"
 launchctl bootout "$launch_domain" "$TARGET_PLIST" >/dev/null 2>&1 || true
 launchctl bootstrap "$launch_domain" "$TARGET_PLIST"
-launchctl enable "$launch_domain/com.vb.gyazo-capture-bridge" >/dev/null 2>&1 || true
+launchctl enable "$launch_domain/$AGENT_LABEL" >/dev/null 2>&1 || true
 
 echo "Installed launch agent: $TARGET_PLIST"
 echo "Watching folder: $watch_path"

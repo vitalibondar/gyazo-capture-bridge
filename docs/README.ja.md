@@ -21,7 +21,7 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 - `upload_gyazo.sh` - Gyazo へ画像アップロード
 - `auto_dispatch.sh` - 自動アップロード用ディスパッチャ
 - `install_launch_agent.sh` / `uninstall_launch_agent.sh` - 自動モード導入・解除
-- `com.vb.gyazo-capture-bridge.plist.template` - LaunchAgent テンプレート
+- `com.gyazo-capture-bridge.plist.template` - LaunchAgent テンプレート
 - `notes_capture_from_clipboard.sh` - テキストをノート受信フォルダに保存
 - `notes_process_inbox.sh` - ノート受信フォルダを処理
 - `notes_pipeline.js` - カード描画・アップロード・アーカイブ・インデックス

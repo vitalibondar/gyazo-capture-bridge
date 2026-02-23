@@ -193,7 +193,7 @@ echo "$NOTES_INDEX_FILE"
 - 次で確認:
 
 ```bash
-launchctl print "gui/$(id -u)/com.vb.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
+launchctl print "gui/$(id -u)/com.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
 ```
 
 description の `App` / `Window` がずれる

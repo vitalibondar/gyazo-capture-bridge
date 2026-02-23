@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.vb.gyazo-capture-bridge</string>
+  <string>com.gyazo-capture-bridge</string>
 
   <key>ProgramArguments</key>
   <array>

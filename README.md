@@ -21,7 +21,7 @@ It works with any capture workflow that saves image files to a folder: Shottr, m
 - `upload_gyazo.sh` - upload image capture to Gyazo
 - `auto_dispatch.sh` - auto-upload dispatcher
 - `install_launch_agent.sh` / `uninstall_launch_agent.sh` - auto mode setup
-- `com.vb.gyazo-capture-bridge.plist.template` - LaunchAgent template
+- `com.gyazo-capture-bridge.plist.template` - LaunchAgent template
 - `notes_capture_from_clipboard.sh` - capture text into notes inbox
 - `notes_process_inbox.sh` - process notes inbox
 - `notes_pipeline.js` - render cards, upload, archive, index

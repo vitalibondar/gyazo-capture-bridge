@@ -193,7 +193,7 @@ echo "$NOTES_INDEX_FILE"
 - перевір:
 
 ```bash
-launchctl print "gui/$(id -u)/com.vb.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
+launchctl print "gui/$(id -u)/com.gyazo-capture-bridge" >/dev/null && echo "loaded" || echo "not loaded"
 ```
 
 У `desc` неправильний `App`/`Window`:
