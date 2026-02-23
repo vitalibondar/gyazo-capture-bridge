@@ -1,0 +1,177 @@
+# Gyazo Capture Bridge (macOS)
+
+Language: **English** | [Українська](./README.uk.md) | [日本語](./README.ja.md)
+Start here: [Why This Exists](./WHY.md) | [Українська](./WHY.uk.md) | [日本語](./WHY.ja.md)
+
+A small macOS bridge that uploads image captures to Gyazo.
+It works with any capture workflow that saves image files to a folder: Shottr, macOS Screenshot, CleanShot X, Flameshot, or your own script.
+
+## What you get
+
+- Manual upload (`upload_gyazo.sh`)
+- Auto upload via `launchd` (`auto_dispatch.sh` + `install_launch_agent.sh`)
+- Gyazo metadata controls (app, source/title, description, tags, access policy)
+- Notes pipeline (`notes_capture_from_clipboard.sh` + `notes_pipeline.js`) for text -> image cards -> Gyazo
+- Notes presets (`mobile`, `desktop`, `custom`) and multipage support
+
+## Project files
+
+- `config.env` - local runtime settings (do not commit)
+- `config.env.example` - template
+- `upload_gyazo.sh` - upload image capture to Gyazo
+- `auto_dispatch.sh` - auto-upload dispatcher
+- `install_launch_agent.sh` / `uninstall_launch_agent.sh` - auto mode setup
+- `com.vb.gyazo-capture-bridge.plist.template` - LaunchAgent template
+- `notes_capture_from_clipboard.sh` - capture text into notes inbox
+- `notes_process_inbox.sh` - process notes inbox
+- `notes_pipeline.js` - render cards, upload, archive, index
+- `WHY.md` - short project philosophy and rationale
+- `FORGOT_EVERYTHING_QUICKSTART.md` - short recovery checklist
+- `NOTES_PRACTICAL_GUIDE.md` - notes-focused practical guide
+- `DECISION_JOURNAL.md` - decisions and rationale log
+- `TRADEMARKS.md` - legal/trademark notice
+
+## Requirements
+
+- macOS
+- `curl`, `plutil`, `osascript`, `pbcopy`
+- `node` (for notes pipeline)
+- `python3` + Pillow recommended for best notes rendering quality
+- any capture app/tool saving image files into `CAPTURE_DIR`
+
+## Quick setup
+
+1. Enter project directory:
+
+```bash
+cd /path/to/gyazo-capture-bridge
+```
+
+2. Create local config:
+
+```bash
+cp ./config.env.example ./config.env
+```
+
+3. Edit config:
+
+```bash
+open -e ./config.env
+```
+
+4. Set `GYAZO_ACCESS_TOKEN` and `CAPTURE_DIR`.
+
+## Get Gyazo access token
+
+1. Log in: [Gyazo Login](https://gyazo.com/login)
+2. Open API page: [Gyazo API](https://gyazo.com/api)
+3. Open app dashboard: [Gyazo OAuth Apps](https://gyazo.com/oauth/applications)
+4. Create app: [New OAuth App](https://gyazo.com/oauth/applications/new)
+5. Generate access token and paste into `config.env`
+
+Token format in `config.env`:
+
+```bash
+GYAZO_ACCESS_TOKEN="YOUR_REAL_TOKEN"
+```
+
+Do not prepend `Bearer` in `config.env`.
+
+Token check:
+
+```bash
+TOKEN="YOUR_REAL_TOKEN"
+curl -sS https://api.gyazo.com/api/users/me -H "Authorization: Bearer $TOKEN"
+```
+
+## Manual upload
+
+Upload latest file from `CAPTURE_DIR`:
+
+```bash
+./upload_gyazo.sh
+```
+
+Upload explicit file:
+
+```bash
+./upload_gyazo.sh "$CAPTURE_DIR/example.png"
+```
+
+## Auto upload mode
+
+Install launch agent:
+
+```bash
+source ./config.env
+./install_launch_agent.sh "$CAPTURE_DIR"
+```
+
+Uninstall:
+
+```bash
+./uninstall_launch_agent.sh
+```
+
+## Notes pipeline
+
+Capture text from clipboard (and optionally process immediately if `NOTES_PROCESS_AFTER_CAPTURE=true`):
+
+```bash
+./notes_capture_from_clipboard.sh
+```
+
+Capture explicit text:
+
+```bash
+./notes_capture_from_clipboard.sh "My note $(date)"
+```
+
+Process inbox manually:
+
+```bash
+./notes_process_inbox.sh
+```
+
+## Important metadata settings
+
+- `GYAZO_ACCESS_POLICY`: `only_me` or `anyone`
+- `GYAZO_TITLE_BROWSER_MODE`: `url` or `tab`
+- `GYAZO_DESC_TAG`: final hashtag line (single token recommended)
+- `GYAZO_DESC_STYLE`: `compact` or `labeled`
+- `CAPTURE_DIR`: watched folder for image captures
+
+## Important macOS permissions
+
+You may need to allow:
+
+- Accessibility (front app/window detection)
+- Automation (browser URL/title reads)
+- Files and Folders (access to Pictures/Documents)
+
+## Automation tools (optional)
+
+You can trigger note capture from any automation tool or run scripts directly in terminal.
+
+## Troubleshooting
+
+`You are not authorized.`
+- Wrong token value (often `client_secret` instead of access token)
+
+`Capture file not found: <empty>`
+- `CAPTURE_DIR` is wrong or folder has no image files
+
+`No text input found (args/stdin/clipboard).`
+- Notes capture script got empty args/stdin/clipboard
+
+`No notes in inbox.`
+- No `.md` or `.txt` in `NOTES_INBOX_DIR`
+
+## Legal
+
+This project is independent and not affiliated with Gyazo / Helpfeel Inc.
+See [TRADEMARKS.md](./TRADEMARKS.md).
+
+## License
+
+MIT. See [LICENSE](./LICENSE).

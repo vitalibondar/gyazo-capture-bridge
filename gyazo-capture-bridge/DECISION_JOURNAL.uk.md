@@ -1,0 +1,206 @@
+# Decision Journal
+
+Мова: [English](./DECISION_JOURNAL.md) | **Українська** | [日本語](./DECISION_JOURNAL.ja.md)
+
+Це не changelog.
+Це журнал рішень, аргументів і нереалізованих ідей, щоб не губити контекст між сесіями.
+
+## Як читати
+
+- `[D]` — прийняте рішення (Decision).
+- `[R]` — аргументація/обмеження (Reasoning).
+- `[I]` — ідея на майбутнє (Idea).
+- `[X]` — відхилений варіант (Rejected).
+
+## Нотація запису
+
+Кожен новий важливий крок додається окремим блоком:
+
+```text
+### YYYY-MM-DD HH:MM — Назва рішення
+[D] Що саме вирішили.
+[R] Чому так.
+[R] Які компроміси/ризики.
+[X] Що відкинули (якщо було).
+[I] Що можна доробити пізніше (опційно).
+[R] Як перевірили (команда/симптом/лог).
+```
+
+## Базова лінія (поточний стан)
+
+### 2026-02-06 — Обрати скрипт, не окрему апку
+[D] Основа інтеграції: shell-скрипти + `launchd`.
+[R] Потрібна простота, контроль через `config.env`, мінімум залежностей.
+[X] Повноцінна macOS-апка відкладена як зайве ускладнення.
+
+### 2026-02-06 — Два режими роботи
+[D] Є ручний режим (`upload_gyazo.sh`) і авто-режим (`auto_dispatch.sh` + LaunchAgent).
+[R] Ручний режим потрібен для контролю, авто — для щоденного флоу.
+
+### 2026-02-07 — Токен Gyazo: жорсткі правила формату
+[D] Токен пишеться в `config.env` як `GYAZO_ACCESS_TOKEN="..."`
+[R] Типова помилка: плутають `access token` з `client_secret` або передають порожню змінну.
+[R] Перевірка валідності: `GET /api/users/me` повертає `HTTP 200`.
+
+### 2026-02-07 — Проблема `Operation not permitted` у LaunchAgent
+[D] Рекомендувати запуск проєкту поза `Documents` (збережено робочий шлях у `~/gyazo-capture-bridge`).
+[R] `launchd` не виконував скрипт із захищеної зони `Documents` (TCC/permissions контекст).
+[R] Симптом: `last exit code = 126` і `Operation not permitted` у launchd stderr.
+
+### 2026-02-07 — Метадані в Gyazo: тільки корисний мінімум
+[D] Базово відправляти контекст `App`, `Window`, `URL` (для браузера), без технічного шуму.
+[R] Це найкраще для "згадати потім", а не для форенсики.
+[X] Повний технічний дамп полів відхилено як зайвий.
+
+### 2026-02-07 — Контекст треба фіксувати в момент події файлу
+[D] В авто-режимі контекст захоплюється одразу, перед sleep/upload.
+[R] Інакше в `desc` може потрапляти інша апка (користувач встиг переключитись).
+[R] Реалізація: оверрайди `FRONTMOST_APP_OVERRIDE`, `FRONT_WINDOW_TITLE_OVERRIDE`, `BROWSER_URL_OVERRIDE`, `BROWSER_TAB_TITLE_OVERRIDE`.
+
+### 2026-02-08 — Формат desc: compact by default
+[D] Дефолтний `desc` — компактний без префіксів `App:/Window:/URL:`.
+[R] Краще читається в Gyazo стрічці.
+[D] Додано перемикач `GYAZO_DESC_STYLE`:
+- `compact` (дефолт)
+- `labeled`
+
+### 2026-02-08 — Теги Gyazo: однословні
+[D] Фінальний тег за замовчуванням: `#capture`.
+[R] Gyazo ріже тег із дефісами, стабільно працює одне слово або `_`.
+[D] Додано гнучке тегування атрибутів:
+- `GYAZO_DESC_TAG_APP`
+- `GYAZO_DESC_TAG_WINDOW`
+- `GYAZO_DESC_TAG_URL`
+- `GYAZO_DESC_TAG`
+
+### 2026-02-08 — Політика доступу за замовчуванням: приватно
+[D] Дефолт `GYAZO_ACCESS_POLICY="only_me"`.
+[R] Безпечніший дефолт для персонального використання.
+[R] Для шарингу одним лінком явно ставимо `anyone`.
+[R] У help-доках Gyazo є примітка про paid plan для visibility-режимів; це може впливати на `only_me`.
+
+### 2026-02-08 — Password protected
+[D] Через поточний публічний upload API пароль на зображення не ставимо.
+[R] У веб-UI це є, але параметра пароля в upload API-доках немає.
+[I] Якщо з'явиться API endpoint для пароля, додати параметри в `config.env`.
+
+### 2026-02-08 — Notes pipeline: inbox-first
+[D] Новий флоу для текстових нотаток будуємо як `inbox -> render -> upload -> archive -> index`.
+[R] Відокремлює момент захоплення тексту від моменту upload і не ламає основний capture-флоу.
+[R] Дозволяє ручні нотатки: досить покласти `.md/.txt` у inbox.
+[R] Sidecar `.meta.json` і front matter покривають контекст (`app/window/url/title/time`) без додаткової БД.
+
+### 2026-02-08 — Notes metadata через upload overrides
+[D] `notes_pipeline.js` не аплоадить напряму в Gyazo, а викликає `upload_gyazo.sh` з `UPLOAD_*` overrides.
+[R] Одна точка інтеграції з API і однаково працюють теги/політика доступу/логування.
+[X] Дублювати curl-логіку в другому скрипті відхилено.
+
+### 2026-02-08 — Notes render без оверінжинірингу
+[D] Рендер: ImageMagick `caption:@file` + простий markdown-to-text.
+[R] Мінімум залежностей і швидкий запуск.
+[X] Повний HTML/CSS або headless browser-рендер відкладено як зайва складність.
+[R] Code block рендериться як plain text, без syntax highlighting.
+
+### 2026-02-08 — Шрифт у notes: safe fallback
+[D] Якщо `NOTES_FONT_FAMILY` не підтримується збіркою ImageMagick, пайплайн автоматично повторює рендер без `-font`.
+[R] На частині систем `magick` падає на системних шрифтах (`delegate/freetype`), але дефолтний рендер працює.
+[R] Це прибирає фатальне падіння при робочому fallback-сценарії.
+
+### 2026-02-08 — Fixed: `No notes in inbox` при наявних notes
+[D] У `notes_process_inbox.sh` увімкнули `set -a` перед `source config.env`, щоб `NOTES_*` потрапляли в env для `node`.
+[R] До цього `notes_capture_from_clipboard.sh` писав у `NOTES_INBOX_DIR` з config, а `notes_pipeline.js` читав дефолтний `./notes-data/inbox`.
+[R] Симптом користувача: `./notes_capture_from_clipboard.sh` без видимого результату + `./notes_process_inbox.sh` -> `No notes in inbox.`.
+
+### 2026-02-08 — Fixed: тихий вихід `notes_capture_from_clipboard.sh`
+[D] Генерацію `note_id` перевели з pipeline `tr | head` на `hexdump`.
+[R] Через `set -euo pipefail` pipeline ловив SIGPIPE і скрипт завершувався тихо до створення файлу.
+[R] Додатково зробили явний текст помилки для порожнього/non-plain буфера.
+
+### 2026-02-08 — Anti-hang guardrails
+[D] Для notes context capture додано `NOTES_OSASCRIPT_TIMEOUT_SEC` (дефолт `2`).
+[R] `osascript` інколи блокується на TCC/Automation, але note не має через це втрачатися.
+[D] Для upload додано `CURL_CONNECT_TIMEOUT_SEC` і `CURL_MAX_TIME_SEC`.
+[R] Якщо мережа/endpoint зависає, скрипт має завершитись за контрольований час, а не висіти безкінечно.
+
+### 2026-02-08 — Capture input fallback: args/stdin/clipboard
+[D] `notes_capture_from_clipboard.sh` тепер приймає текст у 3 джерелах: аргументи -> stdin -> clipboard.
+[R] Це прибирає залежність від крихкого ручного `pbcopy` сценарію і спрощує перевірки.
+[R] Додатково зменшує ймовірність "нічого не сталося", якщо буфер недоступний або порожній.
+
+### 2026-02-08 — Notes renderer quality upgrade
+[D] Рендер notes переведено на порядок `python (Pillow) -> swift -> magick` в режимі `NOTES_RENDER_ENGINE=auto`.
+[R] У поточному середовищі ImageMagick зібраний без freetype, тому дає грубий bitmap-текст.
+[R] Python+Pillow дає чисте згладжування, rounded card і кращу читабельність без складних залежностей.
+[D] Додані параметри стилю: `NOTES_RENDER_SURFACE_COLOR`, `NOTES_RENDER_RADIUS`, `NOTES_RENDER_SCALE`.
+
+### 2026-02-08 — Metadata noise fix for CLI note capture
+[D] Для `notes_capture_from_clipboard.sh` у режимах `args/stdin` metadata джерела ставиться як `manual`.
+[R] Інакше під час тестів/ручних запусків у desc летить `#ghostty` або інша terminal app, що створює шум.
+[R] Контекст активної апки/вікна/URL лишається тільки для clipboard-режиму без аргументів.
+
+### 2026-02-08 — Notes UX parity with screenshots
+[D] Для notes за замовчуванням увімкнули `NOTES_COPY_URL_TO_CLIPBOARD=true`.
+[R] Очікувана поведінка така сама, як у screenshot upload: після аплоаду лінк одразу в буфері.
+[D] Для `source_app=manual` прибрали app-рядок і app-metadata з desc через upload overrides.
+[R] Це прибирає зайві теги (`#ghostty`, `#manual`) у нотатках, створених з CLI.
+
+### 2026-02-08 — Mobile-first defaults for notes card
+[D] Дефолт `NOTES_RENDER_WIDTH` змінено на `430` (mobile-first), `NOTES_RENDER_WINDOW_DOTS` на `false`.
+[R] Картка краще підходить для вертикального перегляду на телефоні, а window controls лишаються опційним стилем.
+
+### 2026-02-08 — Окрема user-friendly шпаргалка для notes
+[D] Додано `NOTES_PRACTICAL_GUIDE.md` з командами copy/paste без зайвого контексту.
+[R] Для швидкого повернення в робочий стан без читання великого README.
+[R] Явно зафіксовано різницю між `manual` режимом і clipboard режимом для поля `App` у Gyazo.
+
+### 2026-02-10 — Multi-page notes + sticky palettes
+[D] Додано автоматичну пагінацію notes через `NOTES_PAGE_MAX_CHARS` (0 вимикає).
+[D] Додано підпис сторінки в картці (`NOTES_PAGE_LABEL=true`, формат `1/3`).
+[D] Для multi-page upload дефолтний порядок `остання -> перша` (`NOTES_UPLOAD_LAST_PAGE_FIRST=true`).
+[R] У Gyazo стрічка сортується від нових до старих; такий порядок робить перегляд сторінок природнішим.
+[D] Додано палітру м'яких "sticky" тем (`NOTES_COLOR_MODE=random_sticky`) без повтору попередньої теми.
+[D] Для запам'ятовування попередньої теми додано state-файл `NOTES_THEME_STATE_FILE`.
+[R] Новий колір на нову нотатку легше відрізняється в стрічці, а всі сторінки однієї нотатки лишаються в одному кольорі.
+
+### 2026-02-10 — Feed order + uniform page size fix
+[D] Для notes upload додано `NOTES_GYAZO_SEND_CREATED_AT=false` за замовчуванням.
+[R] Переданий `created_at` (mtime файлу) може зламати очікуваний порядок multi-page у Gyazo feed.
+[D] Додано `NOTES_PAGE_UNIFORM_SIZE=true`: після рендера сторінки вирівнюються до одного розміру.
+[R] При перегляді сторінок у Gyazo прибрали «стрибання» через різну висоту зображень.
+
+### 2026-02-10 — Notes size presets (mobile/desktop)
+[D] Додано `NOTES_SIZE_PRESET` з трьома режимами: `mobile`, `desktop`, `custom`.
+[D] `mobile` і `desktop` задають узгоджені значення ширини, типографіки і `NOTES_PAGE_MAX_CHARS`.
+[R] Дає стабільний "без скролу" UX для двох сценаріїв (телефон/ноутбук) без ручного тюнінгу десятка змінних.
+
+### 2026-02-10 — Browser Source in Gyazo: URL vs tab title
+[D] Додано `GYAZO_TITLE_BROWSER_MODE` (`url` або `tab`).
+[D] У `config.env` за замовчуванням встановлено `url`.
+[R] Для веб-контенту в полі Gyazo Source корисніше мати прямий URL, а не заголовок вкладки.
+
+### 2026-02-11 — Філософія спочатку: три мовні `WHY`-сторінки
+[D] Додано короткий маніфест "навіщо цей проєкт" у 3 мовах: `WHY.md`, `WHY.uk.md`, `WHY.ja.md`.
+[D] На початку кожного README додано лінки на `WHY`, щоб першим читався сенс, а не інсталяція.
+[R] Перше публічне питання зазвичай: "нащо це, якщо є офіційна апка"; відповідь має бути миттєвою.
+[R] Це спрощує онбординг і вирівнює публічне позиціонування проєкту на GitHub.
+
+## Нереалізовані, але корисні ідеї
+
+### [I] Браузерний URL у Firefox через extension
+[R] Через AppleScript стабільність Firefox URL нижча, ніж у Safari/Chromium-браузерів.
+[I] Мінімальне розширення браузера може передавати URL локально стабільніше.
+
+### [I] Легкий профіль приватності
+[I] Готові профілі в `config.env`:
+- `private` (`only_me`, `metadata_is_public=false`)
+- `share` (`anyone`, мінімум метаданих)
+
+### [I] Ротація логу
+[I] Автоматично архівувати `gyazo-upload.log`, коли файл виростає понад заданий розмір.
+
+## Процес на майбутнє
+
+Для кожної суттєвої зміни в поведінці скрипта або дефолтних налаштуваннях:
+- додай 1 блок у цей файл за шаблоном вище;
+- онови пов'язані пункти в `README.md`;
+- якщо зміна торкається щоденного використання — онови ще `FORGOT_EVERYTHING_QUICKSTART.md`.
