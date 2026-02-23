@@ -9,6 +9,7 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 ## イラスト
 
 [![Gyazo Capture Bridge のイラスト](https://i.gyazo.com/7dc739684829c218ea7e887990ddaed5.png)](https://gyazo.com/7dc739684829c218ea7e887990ddaed5)
+これはノート機能で実際に生成したカードです。詳細は下の [主な機能](#features-overview) を参照してください。
 
 ## デモ（Gyazo）
 
@@ -16,6 +17,7 @@ Gyazo へ画像キャプチャをアップロードするための小さな macO
 - 英語の俳句: [https://gyazo.com/b23738a55339459d9942606bac7128d9](https://gyazo.com/b23738a55339459d9942606bac7128d9)
 - ウクライナ語の俳句: [https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1](https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1)
 
+<a id="features-overview"></a>
 ## 主な機能
 
 - 手動アップロード（`upload_gyazo.sh`）

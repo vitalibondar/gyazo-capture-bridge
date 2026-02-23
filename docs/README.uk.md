@@ -9,6 +9,7 @@
 ## Ілюстрація
 
 [![Ілюстрація Gyazo Capture Bridge](https://i.gyazo.com/575795dd4a6dc00ddfe76fded9ee3650.png)](https://gyazo.com/575795dd4a6dc00ddfe76fded9ee3650)
+Це реальна картка нотатки, згенерована пайплайном нотаток. Деталі: [Що вміє](#features-overview).
 
 ## Жива демонстрація (Gyazo)
 
@@ -16,6 +17,7 @@
 - Хайку англійською: [https://gyazo.com/b23738a55339459d9942606bac7128d9](https://gyazo.com/b23738a55339459d9942606bac7128d9)
 - Хайку українською: [https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1](https://gyazo.com/a05b87ac0f2de93f75af7b6216d0b0d1)
 
+<a id="features-overview"></a>
 ## Що вміє
 
 - Ручне завантаження (`upload_gyazo.sh`)
