@@ -5,6 +5,7 @@
 
 Gyazo へ画像キャプチャをアップロードするための小さな macOS ブリッジです。
 画像をフォルダ保存できるキャプチャ手段なら何でも使えます。例: Shottr、macOS標準スクリーンショット、CleanShot X、Flameshot、独自スクリプト。
+Gyazo は、スクリーンショットやビジュアルメモを固定リンク・OCR検索・タグ付きで蓄積できる高速なキャプチャサービスで、日常作業の外部ビジュアルメモリとして使いやすいです。詳しくは [gyazo.com](https://gyazo.com) と [Gyazo API ドキュメント](https://gyazo.com/api/docs) を参照してください。
 
 [![Gyazo Capture Bridge のイラスト](https://i.gyazo.com/7dc739684829c218ea7e887990ddaed5.png)](https://gyazo.com/7dc739684829c218ea7e887990ddaed5)
 これはノート機能で実際に生成したカードです。詳細は下の [主な機能](#features-overview) を参照してください。
